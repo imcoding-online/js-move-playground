@@ -1,0 +1,9 @@
+{
+  "include": [
+    "src/**/*",
+    "rollup.config.ts",
+  ],
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM"]
+  }
+}

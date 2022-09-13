@@ -1,0 +1,40 @@
+{
+  "name": "@imcoding.online/js-move-playground",
+  "version": "1.0.0",
+  "description": "js move playground by imcoding",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rollup -c rollup.config.ts --configPlugin typescript",
+    "dev": "rollup -c rollup.config.ts -w --configPlugin typescript",
+    "pretest": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imcoding-online/js-move-playground.git"
+  },
+  "keywords": [
+    "move",
+    "vm",
+    "aptos",
+    "javascript",
+    "typescript",
+    "browser"
+  ],
+  "author": "imcoding.online",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/imcoding-online/js-move-playground/issues"
+  },
+  "homepage": "https://github.com/imcoding-online/js-move-playground#readme",
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^8.5.0",
+    "@rollup/plugin-wasm": "^5.2.0",
+    "rollup": "^2.79.0",
+    "rollup-plugin-dts": "^4.2.2",
+    "tslib": "^2.4.0"
+  },
+  "files": [
+    "dist"
+  ]
+}
