@@ -102,6 +102,19 @@ class Project {
     };
   }
 
+  removeFile(f: File) {
+    console.log("remove file: ", f.name);
+    ProjectFs.remove(this.id, f.id);
+  }
+
+  renameFile(f: File, name: string): File {
+    ProjectFs.rename(this.id, f.id, name);
+    return {
+      id: f.id,
+      name,
+    }
+  }
+
   openScript(name: string) : File {
     return this.openFile(this.scriptsDir, name);
   }

@@ -34,7 +34,7 @@ module 0x01::Math {
   `);
 
 // create or open script
-const script = demo.openScript("plus.move");
+let script = demo.openScript("plus.move");
 demo.setContent(script, `
 script {
    use 0x01::Math::sum;
@@ -48,6 +48,12 @@ script {
 await demo.runScript("plus(10, 5)"); // execute success
 
 await demo.runScript("plus(8, 3)"); // throw Error
+
+// rename file
+script = demo.renameFile(script, "plus_v2.move");
+
+// remove file
+demo.removeFile(script);
 
 // remove project
 await demo.remove();
