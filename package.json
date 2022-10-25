@@ -1,6 +1,6 @@
 {
   "name": "@imcoding.online/js-move-playground",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "js move playground by imcoding",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
