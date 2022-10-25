@@ -1,4 +1,4 @@
-import init, { version as rawVersion, ListProjects, ProjectFs, ActionOnProject } from "./playground.js";
+import init, { version as rawVersion, ListProjects, ProjectFs, ActionOnProject, clear_cache } from "./playground.js";
 
 export type Event = {
   type: string;
@@ -49,6 +49,10 @@ export const openProject = async (name: string) : Promise<Project> => {
   return new Project(id, name);
 }
 
+export const clearVMCache = async () => {
+  await clear_cache();
+}
+
 class Project {
   id: number;
   name: string;
@@ -68,6 +72,10 @@ class Project {
     this.scriptsDir = this.getOrCreateDir(fs.Dir,  "scripts");
     this.testsDir = this.getOrCreateDir(fs.Dir,  "tests");
     this.modulesDir = this.getOrCreateDir(fs.Dir,  "sources");
+  }
+
+  getFs() {
+    return ProjectFs.get(this.id);
   }
 
   private getOrCreateDir(parentDir: Dir, name: string) : Dir {
@@ -103,8 +111,11 @@ class Project {
   }
 
   removeFile(f: File) {
-    console.log("remove file: ", f.name);
     ProjectFs.remove(this.id, f.id);
+  }
+
+  clear() {
+    ProjectFs.set(this.id, { Dir: { id: this.id, name: this.name, list: [] } });
   }
 
   renameFile(f: File, name: string): File {
@@ -144,23 +155,22 @@ class Project {
   }
 
   async remove() {
-    console.log("remove project: ", this.name);
     await ListProjects.remove(this.id);
   }
 }
 
-type Dir = {
+export type Dir = {
   id: number,
   name: string,
   list: Fs[],
 }
 
-type File = {
+export type File = {
   id: number,
   name: string,
 }
 
-type Fs = {
+export type Fs = {
   Dir?: Dir,
   File?: File,
 }
